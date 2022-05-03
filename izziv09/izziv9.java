@@ -127,7 +127,6 @@ public class izziv9 {
 				}
 				for (int i = 0; i < temp.inEdges.size(); i++) {
 					Edge e = temp.inEdges.get(i);
-					// System.out.println("Negative: "+ e.startID + " " + e.endID  + " " + e.currFlow);
 					if (!net.nodes[e.startID].marked && e.currFlow != 0) {
 				
 
@@ -140,75 +139,41 @@ public class izziv9 {
 					}
 				}
 				visited[temp.id] = true;
-				// System.out.println(temp.id);
 				temp = nextNode(visited,net.nodes);
 				if (temp == null) {
 					break;
 				}
 				if (temp.id == n - 1) {
 					Edge ee = temp.augmEdge;
-					int start = ee.startID;
 					int end = ee.endID;
 					int flow = net.nodes[end].incFlow;
-					// System.out.println("Flow: " + flow);
 					ArrayList<Integer> pot = new ArrayList<Integer>();
 					System.out.printf("%d:",flow);
 					while (ee != null) {
-						// ee.currFlow += flow;
-						// System.out.println("Sprehajamo po poti " + ee.startID + " " + ee.endID + " incflow " + flow + net.nodes[ee.startID].neg);
 						if (net.nodes[ee.startID].neg && net.nodes[ee.startID].fromNeg == ee.endID) {
 							ee.currFlow -= flow;
 							pot.add(ee.startID);
 							System.out.printf("%2d-", ee.startID);
-
-							// neg povezava odstejmo
-							// System.out.println("-----------------------------------------------------------------------------");
-							// for (int i = 1; i < 6; i++) {
-							// 	ee = net.nodes[i].augmEdge;
-							// 	System.out.println(ee.startID + " " + ee.endID + " " + ee.currFlow);
-							// }
-							// System.out.println(ee == net.nodes[ee.endID].augmEdge);
-							Edge eee = net.nodes[ee.endID].augmEdge;
-							// System.out.println(ee.startID + " " + ee.endID );
-							// System.out.println(eee.startID + " " + eee.endID );
-							ee = net.nodes[ee.startID].augmEdge;
-							ee = eee;
-							// net.nodes[ee.endID].neg = false;
+							ee = net.nodes[ee.endID].augmEdge;
 						}else {
 							//poz povezava normalno
 							System.out.printf("%2d+ ", ee.endID);
-
 							pot.add(ee.endID);
 							ee.currFlow += flow;
 							ee = net.nodes[ee.startID].augmEdge;
 						}
-							
-						
 					}
 					System.out.printf(" 0\n" );
-
-					// pot.add(0);
-					// for (int i = 0; i < pot.size(); i++) {
-					// 	System.out.print(pot.get(i) + " ");
-					// }
-					
 					net.resetMarks();
 					visited = new boolean[n];
 					temp = net.nodes[0];
 					break;
 				}
 			}
-			// ce smo nasli pot
-			
-			
 			if (temp == net.nodes[n-1]) {
 				break;
 			}
-			
-			// temp = nextNode(visited,net.nodes);
 		}
 
-
 	}
-
 }
