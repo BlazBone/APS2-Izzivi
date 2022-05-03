@@ -153,7 +153,7 @@ public class izziv9 {
 						if (net.nodes[ee.startID].neg && net.nodes[ee.startID].fromNeg == ee.endID) {
 							ee.currFlow -= flow;
 							pot.add(ee.startID);
-							System.out.printf("%2d-", ee.startID);
+							System.out.printf("%2d- ", ee.startID);
 							ee = net.nodes[ee.endID].augmEdge;
 						}else {
 							//poz povezava normalno
