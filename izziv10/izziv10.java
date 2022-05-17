@@ -40,7 +40,8 @@ public class izziv10 {
                 }
             }
         }
-        printArr(dp);
+        // printArr(dp);
+        System.out.println(dp[n][k]);
         return dp[n][k];
     }
     
