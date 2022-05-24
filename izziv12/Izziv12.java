@@ -4,7 +4,8 @@ import java.util.*;
  * Izziv12
  */
 public class Izziv12 {
-    public static void printPaths(Integer[] paths) {
+    public static void printPaths(Integer[] paths, int h) {
+        System.out.print("h"+h+": ");
         for (int i = 0; i < paths.length; i++) {
             if (paths[i] == Integer.MAX_VALUE) {
                 
@@ -41,7 +42,7 @@ public class Izziv12 {
         // System.out.println(Arrays.toString(paths));
 
         for (int i = 0; i < numOfVertices; i++) {
-            printPaths(paths2);
+            printPaths(paths2, i);
             for (int j = 0; j < paths2.length; j++) {
                 paths1[j] = paths2[j];
             }
